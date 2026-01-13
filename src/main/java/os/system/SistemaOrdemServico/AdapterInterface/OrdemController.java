@@ -1,8 +1,10 @@
 package os.system.SistemaOrdemServico.AdapterInterface;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import os.system.SistemaOrdemServico.Domain.DTOs.OrdemDTO;
 import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.Domain.Services.OrdemService;
 
@@ -38,8 +40,8 @@ public class OrdemController {
     }
 
     @PostMapping("/criarOrdem")
-    public ResponseEntity<Ordem> criarOrdemServico(@RequestBody Ordem ordem){// Adicionado @RequestBody
-        Ordem novaOrdem = ordemService.cadastrarOrdem(ordem);
+    public ResponseEntity<Ordem> criarOrdemServico(@RequestBody @Valid OrdemDTO dadosOrdem){// Adicionado @RequestBody
+        Ordem novaOrdem = ordemService.cadastrarOrdem(dadosOrdem);
         return ResponseEntity.status(HttpStatus.CREATED).body(novaOrdem); // Retorna 201 Created
     }
 

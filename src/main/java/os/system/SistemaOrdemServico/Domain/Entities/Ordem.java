@@ -18,8 +18,6 @@ public class Ordem {
 
     private String telefone;
 
-    private String email;
-
     private String produto;
 
     private String marca;
@@ -36,5 +34,13 @@ public class Ordem {
 
     private String descricaoDoServico;
 
-
+    public Ordem( String nomeDoCliente, String telefone, String email, String produto, String marca, String modelo, String caracteristicaProduto, LocalDate dataDeAbertura) {
+        this.status = OrdemStatus.ABERTA;
+        this.nomeDoCliente = nomeDoCliente;
+        this.telefone = telefone;
+        this.produto = produto;
+        this.marca = marca;
+        this.caracteristicaProduto = caracteristicaProduto;
+        this.dataDeAbertura = dataDeAbertura;
+    }
 }

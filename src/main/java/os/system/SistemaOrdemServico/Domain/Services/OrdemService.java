@@ -1,6 +1,7 @@
 package os.system.SistemaOrdemServico.Domain.Services;
 
 import org.springframework.stereotype.Service;
+import os.system.SistemaOrdemServico.Domain.DTOs.OrdemDTO;
 import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.Domain.Repositories.OrdemRepository;
 
@@ -14,8 +15,10 @@ public class OrdemService {
         this.ordemRepository = ordemRepository;
     }
 
-    public Ordem cadastrarOrdem(Ordem ordem){
-        return ordemRepository.save(ordem);
+    public Ordem cadastrarOrdem(OrdemDTO dados){
+
+
+        return ordemRepository.save();
     }
 
     public Ordem buscarOrdemPorId(Long id){
