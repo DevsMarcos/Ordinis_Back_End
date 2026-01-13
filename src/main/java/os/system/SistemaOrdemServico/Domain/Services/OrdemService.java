@@ -1,8 +1,11 @@
 package os.system.SistemaOrdemServico.Domain.Services;
 
+import org.springframework.stereotype.Service;
 import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.Domain.Repositories.OrdemRepository;
 
+import java.util.List;
+@Service
 public class OrdemService {
 
     private OrdemRepository ordemRepository;
@@ -22,5 +25,8 @@ public class OrdemService {
 
     public void deletarOrdemPorId(Long id){
         ordemRepository.deleteById(id);
+    }
+    public List<Ordem> buscarTodasAsOrdens(){
+        return ordemRepository.findAll();
     }
 }
