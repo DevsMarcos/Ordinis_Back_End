@@ -1,11 +1,12 @@
 package os.system.SistemaOrdemServico.Domain.DTOs;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record OrdemDTO(
         @NotBlank(message = "O nome do cliente é obrigatório")
-        String nome,
+        String nomeDoCliente,
 
         @NotBlank(message = "O telefone é obrigatório")
         String telefone,
@@ -14,9 +15,16 @@ public record OrdemDTO(
         String produto,
 
         @NotBlank(message = "A marca é obrigatória")
-        String marca
+        String marca,
 
-        @NotBlank
+        @NotBlank(message = "O modelo é obrigatório")
+        String modelo,
+
+        @NotBlank(message = "As características são obrigatórias")
+        String caracteristicaProduto
+
+
+
 
 ) {
 }
