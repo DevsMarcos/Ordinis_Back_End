@@ -1,66 +1,100 @@
 package os.system.SistemaOrdemServico.Domain.Entities;
 
 import jakarta.persistence.*;
-import os.system.SistemaOrdemServico.Domain.DTOs.OrdemDTO;
+import os.system.SistemaOrdemServico.application.DTOs.OrdemDTO;
 import os.system.SistemaOrdemServico.Domain.Enums.OrdemStatus;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Ordem {
 
-    public Ordem(OrdemDTO ordem) {
-        this.status = OrdemStatus.ABERTA; // Atribui ao atributo da classe
-        this.nomeDoCliente = ordem.nomeDoCliente();
-        this.telefone = ordem.telefone();
-        this.produto = ordem.produto();
-        this.marca = ordem.marca();
-        this.modelo = ordem.modelo();
-        this.caracteristicaProduto = ordem.caracteristicaProduto();
+    public Ordem(String nomeDoCliente, String telefone, String produto, String marca, String modelo, String caracteristicaProduto) {
+        this.status = OrdemStatus.ABERTA;
+        this.nomeDoCliente = nomeDoCliente;
+        this.telefone = telefone;
+        this.produto = produto;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.caracteristicaProduto = caracteristicaProduto;
         this.dataDeAbertura = LocalDate.now();
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column() // O nome no MySQL será este
     private Long id;
 
-    @Enumerated(EnumType.STRING)
     private  OrdemStatus status;
 
-    @Column()
     private String nomeDoCliente;
 
-    @Column()
     private String telefone;
 
-    @Column(nullable = true)
     private String email;
 
-    @Column()
     private String produto;
 
-    @Column()
     private String marca;
 
-    @Column()
     private String modelo;
 
-    @Column(nullable = false)
     private String caracteristicaProduto;
 
-    @Column()
     private LocalDate dataDeAbertura;
 
-    @Column(nullable = true)
     private LocalDate dataFechamento;
 
-    @Column(nullable = true)
     private double valorServico;
-
-
 
     private String descricaoDoServico;
 
+    public Long getId() {
+        return id;
+    }
+
+    public OrdemStatus getStatus() {
+        return status;
+    }
+
+    public String getNomeDoCliente() {
+        return nomeDoCliente;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getProduto() {
+        return produto;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public String getCaracteristicaProduto() {
+        return caracteristicaProduto;
+    }
+
+    public LocalDate getDataDeAbertura() {
+        return dataDeAbertura;
+    }
+
+    public LocalDate getDataFechamento() {
+        return dataFechamento;
+    }
+
+    public double getValorServico() {
+        return valorServico;
+    }
+
+    public String getDescricaoDoServico() {
+        return descricaoDoServico;
+    }
 }

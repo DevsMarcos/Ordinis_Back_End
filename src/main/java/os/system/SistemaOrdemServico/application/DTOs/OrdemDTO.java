@@ -1,4 +1,4 @@
-package os.system.SistemaOrdemServico.Domain.DTOs;
+package os.system.SistemaOrdemServico.application.DTOs;
 
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
@@ -22,9 +22,6 @@ public record OrdemDTO(
 
         @NotBlank(message = "As características são obrigatórias")
         String caracteristicaProduto
-
-
-
 
 ) {
 }

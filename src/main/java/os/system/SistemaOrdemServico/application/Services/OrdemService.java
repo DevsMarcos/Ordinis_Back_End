@@ -1,13 +1,11 @@
-package os.system.SistemaOrdemServico.Domain.Services;
+package os.system.SistemaOrdemServico.application.Services;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import os.system.SistemaOrdemServico.Domain.DTOs.OrdemDTO;
+import os.system.SistemaOrdemServico.application.DTOs.OrdemDTO;
 import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
-import os.system.SistemaOrdemServico.Domain.Enums.OrdemStatus;
 import os.system.SistemaOrdemServico.Domain.Repositories.OrdemRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 @Service
 public class OrdemService {
@@ -19,11 +17,11 @@ public class OrdemService {
     }
 
     @Transactional()
-    public Ordem cadastrarOrdem(OrdemDTO dados){
+    public Ordem cadastrarOrdem(OrdemDTO dto){
 
-        Ordem novaOrdem = new Ordem(dados);
+        Ordem ordem = new Ordem(dto.nomeDoCliente(), dto.telefone(), dto.produto(), dto.marca(), dto.modelo(), dto.caracteristicaProduto());
 
-        return ordemRepository.save(novaOrdem);
+        return ordemRepository.save(ordem);
     }
 
     public Ordem buscarOrdemPorId(Long id){
