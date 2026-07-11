@@ -6,45 +6,37 @@ import os.system.SistemaOrdemServico.Domain.Enums.OrdemStatus;
 
 import java.time.LocalDate;
 
-@Entity
 public class Ordem {
+    private Long id;
+    private  OrdemStatus status;
+    private String nomeDoCliente;
+    private String telefone;
+    private String email;
+    private String produto;
+    private String marca;
+    private String modelo;
+    private String caracteristicaProduto;
+    private LocalDate dataDeAbertura;
+    private LocalDate dataFechamento;
+    private double valorServico;
+    private String descricaoDoServico;
 
-    public Ordem(String nomeDoCliente, String telefone, String produto, String marca, String modelo, String caracteristicaProduto) {
-        this.status = OrdemStatus.ABERTA;
-        this.nomeDoCliente = nomeDoCliente;
-        this.telefone = telefone;
-        this.produto = produto;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.caracteristicaProduto = caracteristicaProduto;
-        this.dataDeAbertura = LocalDate.now();
+
+    public static Ordem abrir(String nomeDoCliente, String telefone, String produto,
+                              String marca, String modelo, String caracteristicaProduto) {
+        Ordem ordem = new Ordem();
+        ordem.status = OrdemStatus.ABERTA;
+        ordem.nomeDoCliente = nomeDoCliente;
+        ordem.telefone = telefone;
+        ordem.produto = produto;
+        ordem.marca = marca;
+        ordem.modelo = modelo;
+        ordem.caracteristicaProduto = caracteristicaProduto;
+        ordem.dataDeAbertura = LocalDate.now();
+        return ordem;
     }
 
-    private Long id;
 
-    private  OrdemStatus status;
-
-    private String nomeDoCliente;
-
-    private String telefone;
-
-    private String email;
-
-    private String produto;
-
-    private String marca;
-
-    private String modelo;
-
-    private String caracteristicaProduto;
-
-    private LocalDate dataDeAbertura;
-
-    private LocalDate dataFechamento;
-
-    private double valorServico;
-
-    private String descricaoDoServico;
 
     public Long getId() {
         return id;

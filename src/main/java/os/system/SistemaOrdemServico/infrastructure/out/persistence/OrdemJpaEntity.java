@@ -46,4 +46,57 @@ public class OrdemJpaEntity {
 
     @Column()
     private String descricaoDoServico;
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setStatus(OrdemStatus status) {
+        this.status = status;
+    }
+
+    public void setNomeDoCliente(String nomeDoCliente) {
+        this.nomeDoCliente = nomeDoCliente;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setProduto(String produto) {
+        this.produto = produto;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public void setCaracteristicaProduto(String caracteristicaProduto) {
+        this.caracteristicaProduto = caracteristicaProduto;
+    }
+
+    public void setDataDeAbertura(LocalDate dataDeAbertura) {
+        this.dataDeAbertura = dataDeAbertura;
+    }
+
+    public void setDataFechamento(LocalDate dataFechamento) {
+        this.dataFechamento = dataFechamento;
+    }
+
+    public void setValorServico(double valorServico) {
+        this.valorServico = valorServico;
+    }
+
+    public void setDescricaoDoServico(String descricaoDoServico) {
+        this.descricaoDoServico = descricaoDoServico;
+    }
 }

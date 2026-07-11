@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemDTO;
 import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.Domain.Repositories.OrdemRepository;
+import os.system.SistemaOrdemServico.application.DTOs.OrdemRequestDTO;
 
 import java.util.List;
 @Service
@@ -17,22 +18,20 @@ public class OrdemService {
     }
 
     @Transactional()
-    public Ordem cadastrarOrdem(OrdemDTO dto){
+    public OrdemDTO cadastrarOrdem(OrdemRequestDTO dto){
 
-        Ordem ordem = new Ordem(dto.nomeDoCliente(), dto.telefone(), dto.produto(), dto.marca(), dto.modelo(), dto.caracteristicaProduto());
+        Ordem ordem = Ordem.abrir(
+                dto.nomeDoCliente(),
+                dto.telefone(),
+                dto.produto(),
+                dto.marca(),
+                dto.modelo(),
+                dto.caracteristicaProduto()
+        );
 
-        return ordemRepository.save(ordem);
+        Ordem salva = ordemRepository.salvar(ordem);
+        return null;
+
     }
 
-    public Ordem buscarOrdemPorId(Long id){
-        return ordemRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Ordem não encontrada!"));
-    }
-
-    public void deletarOrdemPorId(Long id){
-        ordemRepository.deleteById(id);
-    }
-    public List<Ordem> buscarTodasAsOrdens(){
-        return ordemRepository.findAll();
-    }
 }
