@@ -36,6 +36,24 @@ public class Ordem {
         return ordem;
     }
 
+    public static Ordem reconstituir(Long id, OrdemStatus status, String nomeDoCliente,
+                                     String telefone, String produto, String marca, String modelo,
+                                     String caracteristicaProduto, LocalDate dataDeAbertura,
+                                     LocalDate dataFechamento) {
+        Ordem ordem = new Ordem();
+        ordem.id = id;
+        ordem.status = status;
+        ordem.nomeDoCliente = nomeDoCliente;
+        ordem.telefone = telefone;
+        ordem.produto = produto;
+        ordem.marca = marca;
+        ordem.modelo = modelo;
+        ordem.caracteristicaProduto = caracteristicaProduto;
+        ordem.dataDeAbertura = dataDeAbertura;
+        ordem.dataFechamento = dataFechamento;
+        return ordem;
+    }
+
 
 
     public Long getId() {

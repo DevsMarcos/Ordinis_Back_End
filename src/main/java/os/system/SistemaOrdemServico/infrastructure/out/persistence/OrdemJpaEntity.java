@@ -99,4 +99,56 @@ public class OrdemJpaEntity {
     public void setDescricaoDoServico(String descricaoDoServico) {
         this.descricaoDoServico = descricaoDoServico;
     }
+
+    public OrdemStatus getStatus() {
+        return status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNomeDoCliente() {
+        return nomeDoCliente;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getProduto() {
+        return produto;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public String getCaracteristicaProduto() {
+        return caracteristicaProduto;
+    }
+
+    public LocalDate getDataDeAbertura() {
+        return dataDeAbertura;
+    }
+
+    public LocalDate getDataFechamento() {
+        return dataFechamento;
+    }
+
+    public double getValorServico() {
+        return valorServico;
+    }
+
+    public String getDescricaoDoServico() {
+        return descricaoDoServico;
+    }
 }
