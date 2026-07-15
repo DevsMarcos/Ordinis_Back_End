@@ -17,7 +17,6 @@ public class OrdemMapper {
         e.setCaracteristicaProduto(ordem.getCaracteristicaProduto());
         e.setDataDeAbertura(ordem.getDataDeAbertura());
         e.setDataFechamento(ordem.getDataFechamento());
-
         return e;
     }
 

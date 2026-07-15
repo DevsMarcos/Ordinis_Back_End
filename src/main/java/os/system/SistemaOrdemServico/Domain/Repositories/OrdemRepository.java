@@ -1,6 +1,5 @@
 package os.system.SistemaOrdemServico.Domain.Repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 
 import java.util.Optional;

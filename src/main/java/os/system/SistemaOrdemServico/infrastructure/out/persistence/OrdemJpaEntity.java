@@ -6,7 +6,7 @@ import os.system.SistemaOrdemServico.Domain.Enums.OrdemStatus;
 import java.time.LocalDate;
 
 @Entity()
-@Table(name = "ordem")
+@Table(name = "ordens_servico")
 public class OrdemJpaEntity {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
