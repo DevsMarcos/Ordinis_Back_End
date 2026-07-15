@@ -20,10 +20,8 @@ public class OrdemMapper {
         return e;
     }
 
-
     public static Ordem paraDomain(OrdemJpaEntity e) {
         return Ordem.reconstituir(e.getId(), e.getStatus(), e.getNomeDoCliente(), e.getTelefone(), e.getProduto(), e.getMarca(), e.getModelo(), e.getCaracteristicaProduto(), e.getDataDeAbertura(), e.getDataFechamento());
-        // reconstituir = outro factory method, sem validação de "abertura", só remontagem
     }
 
     public static OrdemDTO paraDTO(Ordem ordem) {

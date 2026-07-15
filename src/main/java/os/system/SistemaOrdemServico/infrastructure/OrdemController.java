@@ -14,18 +14,22 @@ public class OrdemController {
 
   private final OrdemService ordemService;
 
-    //Construtor do OrdemController inicializando o OrdemService;
+    /**
+    Construtor do OrdemController inicializando o OrdemService
+     */;
     public OrdemController(OrdemService ordemService) {
         this.ordemService = ordemService;
     }
 
-    /*
-    Ponto de entrada da aplicação, aqui há o mapemanto para o endpoint de criação de OS
+    /**
+    *Ponto de entrada da aplicação, aqui há o mapemanto para o endpoint de criação de OS
     * O metodo abaixo retorna especificamente um DTO(Data Transfer Object) da ORDEM
     */
     @PostMapping("/criarOrdem")
     public ResponseEntity<OrdemDTO> criarOrdemServico(@RequestBody OrdemRequestDTO dadosOrdem){
-        /*Recebe por Parâmetro dados da OS, pradonizados pelo OrdemRequestDTO
+
+        /**
+        *Recebe por Parâmetro dados da OS, pradonizados pelo OrdemRequestDTO
         * Após isso cria uma nova ordem, utilizando como base o serviço de criação do OrdemService
         * e retorna para o front uma confirma de 201, criada
         * */

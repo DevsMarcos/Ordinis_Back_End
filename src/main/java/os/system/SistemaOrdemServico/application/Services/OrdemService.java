@@ -12,21 +12,27 @@ import java.util.List;
 @Service
 public class OrdemService {
 
+    //Declara o OrdemRepository
     private OrdemRepository ordemRepository;
 
+    /**
+     * Injeção de dependência por construtor.
+     * Recebe o repositório pronto para uso, garantindo baixo acoplamento
+     * e facilitando a criação de testes unitários (mocking).
+     */
     public OrdemService(OrdemRepository ordemRepository) {
         this.ordemRepository = ordemRepository;
     }
 
     @Transactional()
-    /*Função de criação da Ordem, utilizada no Controller, recebe do mesmo um DTO Request
+    /**
+    Função de criação da Ordem, utilizada no Controller, recebe do mesmo um DTO Request
     * dados específicos para a criação da OS
     * Ele istancia uma nova OS, e passa por parâmetros os dados do dto recebido
     * após isso, utiliza da função de salvar do repositório e retorna novamente a ordem de serviço em si criada
     * Utilizando de um Mapper, que converte da Entidade para o DTO, retornando ao Controller e após ao Front
     * */
     public OrdemDTO cadastrarOrdem(OrdemRequestDTO dto){
-
         Ordem ordem = Ordem.abrir(
                 dto.nomeDoCliente(),
                 dto.telefone(),
@@ -35,10 +41,8 @@ public class OrdemService {
                 dto.modelo(),
                 dto.caracteristicaProduto()
         );
-
         Ordem salva = ordemRepository.salvar(ordem);
         return OrdemMapper.paraDTO(salva);
-
     }
 
 }

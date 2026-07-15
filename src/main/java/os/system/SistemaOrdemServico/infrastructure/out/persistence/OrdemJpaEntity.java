@@ -5,11 +5,17 @@ import os.system.SistemaOrdemServico.Domain.Enums.OrdemStatus;
 
 import java.time.LocalDate;
 
+/**
+ * Esta classe é realiza o espelho da entidade de dompinio,
+ * utilizada para realizar as interações co o banco de dados
+ * de forma independente ao dompinio. Possui as anotações correspondetes necessárop*/
+
+
 @Entity()
 @Table(name = "ordens_servico")
 public class OrdemJpaEntity {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY) /*Metodo de geracao dos ids*/
     private Long id;
 
     @Enumerated(EnumType.STRING)
