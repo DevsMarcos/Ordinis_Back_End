@@ -1,9 +1,9 @@
-package os.system.SistemaOrdemServico.infrastructure.out.persistence;
+package os.system.SistemaOrdemServico.infrastructure.persistence;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.Domain.Repositories.OrdemRepository;
+import os.system.SistemaOrdemServico.application.DTOs.OrdemDTO;
 
 import java.util.Optional;
 
@@ -34,9 +34,13 @@ public class OrdemRepositoryImpl implements OrdemRepository {
         return OrdemMapper.paraDomain(salva);
     }
 
-    /**Não implementado ainda*/
+    /**literalmente a operação "se existir valor dentro do Optional,
+     * aplica essa função nele e devolve outro Optional; se não existir,
+     * devolve Optional.empty() automaticamente"
+     * */
     @Override
     public Optional<Ordem> buscarPorId(Long id) {
-        return Optional.empty();
+        return jpaRepository.findById(id)
+                .map(OrdemMapper::paraDomain);
     }
 }

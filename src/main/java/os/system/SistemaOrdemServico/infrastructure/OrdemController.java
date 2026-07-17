@@ -3,6 +3,7 @@ package os.system.SistemaOrdemServico.infrastructure;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemDTO;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemRequestDTO;
 import os.system.SistemaOrdemServico.application.Services.OrdemService;
@@ -35,6 +36,14 @@ public class OrdemController {
         * */
         OrdemDTO novaOrdem = ordemService.cadastrarOrdem(dadosOrdem);
         return ResponseEntity.status(HttpStatus.CREATED).body(novaOrdem); // Retorna 201 Created
+    }
+
+    // OrdemController
+    @GetMapping("/buscarPorId/{id}")
+    public ResponseEntity<OrdemDTO> buscar(@PathVariable Long id) {
+        return ordemService.buscarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
 

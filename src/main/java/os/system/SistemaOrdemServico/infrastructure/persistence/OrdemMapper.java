@@ -1,4 +1,4 @@
-package os.system.SistemaOrdemServico.infrastructure.out.persistence;
+package os.system.SistemaOrdemServico.infrastructure.persistence;
 
 import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemDTO;

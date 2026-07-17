@@ -1,4 +1,4 @@
-package os.system.SistemaOrdemServico.infrastructure.out.persistence;
+package os.system.SistemaOrdemServico.infrastructure.persistence;
 
 import jakarta.persistence.*;
 import os.system.SistemaOrdemServico.Domain.Enums.OrdemStatus;

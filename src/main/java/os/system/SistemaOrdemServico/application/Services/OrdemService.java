@@ -6,9 +6,10 @@ import os.system.SistemaOrdemServico.application.DTOs.OrdemDTO;
 import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.Domain.Repositories.OrdemRepository;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemRequestDTO;
-import os.system.SistemaOrdemServico.infrastructure.out.persistence.OrdemMapper;
+import os.system.SistemaOrdemServico.infrastructure.persistence.OrdemMapper;
 
-import java.util.List;
+import java.util.Optional;
+
 @Service
 public class OrdemService {
 
@@ -45,4 +46,8 @@ public class OrdemService {
         return OrdemMapper.paraDTO(salva);
     }
 
+    public Optional<OrdemDTO> buscarPorId(Long id) {
+        return ordemRepository.buscarPorId(id)
+                .map(OrdemMapper::paraDTO);
+    }
 }
