@@ -3,11 +3,9 @@ package os.system.SistemaOrdemServico.infrastructure;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemDTO;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemRequestDTO;
 import os.system.SistemaOrdemServico.application.Services.OrdemService;
-import os.system.SistemaOrdemServico.infrastructure.persistence.OrdemMapper;
 
 import java.util.List;
 
@@ -60,5 +58,12 @@ public class OrdemController {
         return ResponseEntity.ok(resultado);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        ordemService.deletar(id);
+
+        // 204 No Content: convenção HTTP pra "deu certo, mas não tem corpo pra devolver"
+        return ResponseEntity.noContent().build();
+    }
 
 }

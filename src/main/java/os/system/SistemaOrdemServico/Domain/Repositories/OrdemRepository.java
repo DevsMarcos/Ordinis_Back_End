@@ -14,5 +14,5 @@ public interface OrdemRepository{
      porque quem implementa esse metodo somos NÓS (no OrdemRepositoryImpl), não o framework.
      Retorna List, não Optional, porque pode ter 0, 1 ou vários resultados. **/
     List<Ordem> buscarPorNome(String nome);
-    Ordem deletar(Ordem ordem);
+    void deletar(Long id);
 }

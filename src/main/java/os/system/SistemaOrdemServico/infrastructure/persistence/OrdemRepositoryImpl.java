@@ -55,8 +55,8 @@ public class OrdemRepositoryImpl implements OrdemRepository {
     }
 
     @Override
-    public Ordem deletar(Ordem ordem) {
-        return null;
+    public void deletar(Long id) {
+        jpaRepository.deleteById(id);
     }
 
 

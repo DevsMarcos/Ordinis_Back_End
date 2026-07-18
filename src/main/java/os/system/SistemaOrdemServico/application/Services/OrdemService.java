@@ -59,4 +59,11 @@ public class OrdemService {
                 .map(OrdemMapper::paraDTO)     // 3. cada Ordem (domínio) vira OrdemDTO (contrato de saída)
                 .toList();                     // 4. junta tudo numa List<OrdemDTO>
     }
+
+    public void deletar(Long id) {
+        if (ordemRepository.buscarPorId(id).isEmpty()) {
+            throw new IllegalArgumentException("Ordem não encontrada: " + id);
+        }
+        ordemRepository.deletar(id);
+    }
 }
