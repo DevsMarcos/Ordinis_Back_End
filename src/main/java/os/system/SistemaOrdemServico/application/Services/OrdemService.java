@@ -8,6 +8,7 @@ import os.system.SistemaOrdemServico.Domain.Repositories.OrdemRepository;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemRequestDTO;
 import os.system.SistemaOrdemServico.infrastructure.persistence.OrdemMapper;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -49,5 +50,13 @@ public class OrdemService {
     public Optional<OrdemDTO> buscarPorId(Long id) {
         return ordemRepository.buscarPorId(id)
                 .map(OrdemMapper::paraDTO);
+    }
+
+    public List<OrdemDTO> buscarPorNome(String nome) {
+        return ordemRepository
+                .buscarPorNome(nome)          // 1. pede ao repository as Ordem que batem com o nome
+                .stream()                      // 2. vira Stream pra poder mapear
+                .map(OrdemMapper::paraDTO)     // 3. cada Ordem (domínio) vira OrdemDTO (contrato de saída)
+                .toList();                     // 4. junta tudo numa List<OrdemDTO>
     }
 }

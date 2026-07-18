@@ -5,6 +5,7 @@ import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.Domain.Repositories.OrdemRepository;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemDTO;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,4 +44,20 @@ public class OrdemRepositoryImpl implements OrdemRepository {
         return jpaRepository.findById(id)
                 .map(OrdemMapper::paraDomain);
     }
+
+    @Override
+    public List<Ordem> buscarPorNome(String nome) {
+        return jpaRepository
+                .findByNomeDoClienteContainingIgnoreCase(nome) // 1. busca no banco, devolve List<OrdemJpaEntity>
+                .stream()                                       // 2. transforma a List num Stream, pra poder processar item a item
+                .map(OrdemMapper::paraDomain)                    // 3. converte cada OrdemJpaEntity em Ordem (domínio)
+                .toList();                                       // 4. junta tudo de volta numa List<Ordem>
+    }
+
+    @Override
+    public Ordem deletar(Ordem ordem) {
+        return null;
+    }
+
+
 }

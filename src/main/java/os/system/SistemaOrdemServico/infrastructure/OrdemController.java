@@ -7,6 +7,9 @@ import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemDTO;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemRequestDTO;
 import os.system.SistemaOrdemServico.application.Services.OrdemService;
+import os.system.SistemaOrdemServico.infrastructure.persistence.OrdemMapper;
+
+import java.util.List;
 
 
 @RestController
@@ -46,7 +49,16 @@ public class OrdemController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Responde: GET /ordens?nome=algumacoisa
+    @GetMapping
+    public ResponseEntity<List<OrdemDTO>> buscarPorNome(@RequestParam String nome) {
+        // @RequestParam pega o valor "nome" da query string da URL (depois do "?")
+        List<OrdemDTO> resultado = ordemService.buscarPorNome(nome);
 
+        // 200 OK sempre aqui, mesmo se a lista vier vazia —
+        // lista vazia é uma resposta válida ("nenhuma ordem encontrada"), não é erro.
+        return ResponseEntity.ok(resultado);
+    }
 
 
 }
