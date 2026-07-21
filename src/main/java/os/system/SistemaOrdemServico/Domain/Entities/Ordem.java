@@ -54,6 +54,25 @@ public class Ordem {
         return ordem;
     }
 
+    public void atualizarDados(String telefone, String produto, String marca,
+                               String modelo, String caracteristicaProduto) {
+        if (telefone != null && !telefone.isBlank()) {
+            this.telefone = telefone;
+        }
+        if (produto != null && !produto.isBlank()) {
+            this.produto = produto;
+        }
+        if (marca != null && !marca.isBlank()) {
+            this.marca = marca;
+        }
+        if (modelo != null && !modelo.isBlank()) {
+            this.modelo = modelo;
+        }
+        if (caracteristicaProduto != null && !caracteristicaProduto.isBlank()) {
+            this.caracteristicaProduto = caracteristicaProduto;
+        }
+    }
+
 
 
     public Long getId() {

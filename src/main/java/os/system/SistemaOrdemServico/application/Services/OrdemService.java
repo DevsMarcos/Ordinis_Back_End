@@ -2,6 +2,7 @@ package os.system.SistemaOrdemServico.application.Services;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import os.system.SistemaOrdemServico.Domain.Exceptions.OrdemNaoEncontradaException;
 import os.system.SistemaOrdemServico.application.DTOs.OrdemDTO;
 import os.system.SistemaOrdemServico.Domain.Entities.Ordem;
 import os.system.SistemaOrdemServico.Domain.Repositories.OrdemRepository;
@@ -65,5 +66,16 @@ public class OrdemService {
             throw new IllegalArgumentException("Ordem não encontrada: " + id);
         }
         ordemRepository.deletar(id);
+    }
+
+    public OrdemDTO atualizar(Long id, OrdemRequestDTO dto) {
+        Ordem ordem = ordemRepository.buscarPorId(id)
+                .orElseThrow(() -> new OrdemNaoEncontradaException(id));
+
+        ordem.atualizarDados(dto.telefone(), dto.produto(), dto.marca(),
+                dto.modelo(), dto.caracteristicaProduto());
+
+        Ordem atualizada = ordemRepository.salvar(ordem);
+        return OrdemMapper.paraDTO(atualizada);
     }
 }

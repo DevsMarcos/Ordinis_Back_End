@@ -66,4 +66,10 @@ public class OrdemController {
         return ResponseEntity.noContent().build();
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<OrdemDTO>atualizar(@PathVariable Long id, @RequestBody OrdemRequestDTO dto){
+        OrdemDTO atualizada = ordemService.atualizar(id, dto);
+        return ResponseEntity.ok(atualizada);
+    }
+
 }
