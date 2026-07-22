@@ -78,4 +78,8 @@ public class OrdemService {
         Ordem atualizada = ordemRepository.salvar(ordem);
         return OrdemMapper.paraDTO(atualizada);
     }
+
+    public List<OrdemDTO> buscarTodas(){
+        return ordemRepository.buscarTodas().stream().map(OrdemMapper::paraDTO).toList();
+    }
 }

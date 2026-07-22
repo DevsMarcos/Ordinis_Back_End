@@ -59,7 +59,10 @@ public class OrdemRepositoryImpl implements OrdemRepository {
         jpaRepository.deleteById(id);
     }
 
-
+    @Override
+    public List<Ordem> buscarTodas() {
+        return jpaRepository.findAll().stream().map(OrdemMapper::paraDomain).toList();
+    }
 
 
 }

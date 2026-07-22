@@ -72,4 +72,11 @@ public class OrdemController {
         return ResponseEntity.ok(atualizada);
     }
 
+    @GetMapping
+    public ResponseEntity<List<OrdemDTO>> buscarTodas(){
+        List<OrdemDTO> data = ordemService.buscarTodas();
+
+        return ResponseEntity.ok(data);
+    }
+
 }

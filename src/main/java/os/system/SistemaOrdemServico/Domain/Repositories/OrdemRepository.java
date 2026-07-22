@@ -15,4 +15,5 @@ public interface OrdemRepository{
      Retorna List, não Optional, porque pode ter 0, 1 ou vários resultados. **/
     List<Ordem> buscarPorNome(String nome);
     void deletar(Long id);
+    List<Ordem> buscarTodas(); // novo
 }
