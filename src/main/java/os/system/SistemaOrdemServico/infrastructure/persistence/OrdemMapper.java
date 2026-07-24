@@ -34,6 +34,6 @@ public class OrdemMapper {
 
     //COnverte o domínio para o DTO
     public static OrdemDTO paraDTO(Ordem ordem) {
-        return new OrdemDTO(ordem.getNomeDoCliente(), ordem.getTelefone(), ordem.getProduto(), ordem.getMarca(), ordem.getModelo(), ordem.getCaracteristicaProduto());
+        return new OrdemDTO(ordem.getId(), ordem.getStatus(), ordem.getNomeDoCliente(), ordem.getTelefone(), ordem.getProduto(), ordem.getMarca(), ordem.getModelo(), ordem.getCaracteristicaProduto(), ordem.getDataDeAbertura(), ordem.getDataFechamento());
     }
 }

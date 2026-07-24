@@ -72,7 +72,7 @@ public class OrdemController {
         return ResponseEntity.ok(atualizada);
     }
 
-    @GetMapping
+    @GetMapping("/buscarOrdens")
     public ResponseEntity<List<OrdemDTO>> buscarTodas(){
         List<OrdemDTO> data = ordemService.buscarTodas();
 
