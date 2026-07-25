@@ -21,7 +21,7 @@ public class OrdemMapper {
         e.setProduto(ordem.getProduto());
         e.setMarca(ordem.getMarca());
         e.setModelo(ordem.getModelo());
-        e.setCaracteristicaProduto(ordem.getCaracteristicaProduto());
+        e.setCaracteristicaProduto(ordem.getDefeito());
         e.setDataDeAbertura(ordem.getDataDeAbertura());
         e.setDataFechamento(ordem.getDataFechamento());
         return e;
@@ -29,11 +29,11 @@ public class OrdemMapper {
 
     //Converte a JPA para domínio
     public static Ordem paraDomain(OrdemJpaEntity e) {
-        return Ordem.reconstituir(e.getId(), e.getStatus(), e.getNomeDoCliente(), e.getTelefone(), e.getProduto(), e.getMarca(), e.getModelo(), e.getCaracteristicaProduto(), e.getDataDeAbertura(), e.getDataFechamento());
+        return Ordem.reconstituir(e.getId(), e.getStatus(), e.getNomeDoCliente(), e.getTelefone(), e.getProduto(), e.getMarca(), e.getModelo(), e.getDefeito(), e.getDataDeAbertura(), e.getDataFechamento());
     }
 
     //COnverte o domínio para o DTO
     public static OrdemDTO paraDTO(Ordem ordem) {
-        return new OrdemDTO(ordem.getId(), ordem.getStatus(), ordem.getNomeDoCliente(), ordem.getTelefone(), ordem.getProduto(), ordem.getMarca(), ordem.getModelo(), ordem.getCaracteristicaProduto(), ordem.getDataDeAbertura(), ordem.getDataFechamento());
+        return new OrdemDTO(ordem.getId(), ordem.getStatus(), ordem.getNomeDoCliente(), ordem.getTelefone(), ordem.getProduto(), ordem.getMarca(), ordem.getModelo(), ordem.getDefeito(), ordem.getDataDeAbertura(), ordem.getDataFechamento());
     }
 }

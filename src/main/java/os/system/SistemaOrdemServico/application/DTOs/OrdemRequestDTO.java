@@ -6,5 +6,5 @@ public record OrdemRequestDTO(
         String produto,
         String marca,
         String modelo,
-        String caracteristicaProduto
+        String defeito
 ) {}

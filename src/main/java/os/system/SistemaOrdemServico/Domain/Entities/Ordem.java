@@ -15,7 +15,7 @@ public class Ordem {
     private String produto;
     private String marca;
     private String modelo;
-    private String caracteristicaProduto;
+    private String defeito;
     private LocalDate dataDeAbertura;
     private LocalDate dataFechamento;
     private double valorServico;
@@ -23,7 +23,7 @@ public class Ordem {
 
 
     public static Ordem abrir(String nomeDoCliente, String telefone, String produto,
-                              String marca, String modelo, String caracteristicaProduto) {
+                              String marca, String modelo, String defeito) {
         Ordem ordem = new Ordem();
         ordem.status = OrdemStatus.ABERTA;
         ordem.nomeDoCliente = nomeDoCliente;
@@ -31,14 +31,14 @@ public class Ordem {
         ordem.produto = produto;
         ordem.marca = marca;
         ordem.modelo = modelo;
-        ordem.caracteristicaProduto = caracteristicaProduto;
+        ordem.defeito = defeito;
         ordem.dataDeAbertura = LocalDate.now();
         return ordem;
     }
 
     public static Ordem reconstituir(Long id, OrdemStatus status, String nomeDoCliente,
                                      String telefone, String produto, String marca, String modelo,
-                                     String caracteristicaProduto, LocalDate dataDeAbertura,
+                                     String defeito, LocalDate dataDeAbertura,
                                      LocalDate dataFechamento) {
         Ordem ordem = new Ordem();
         ordem.id = id;
@@ -48,7 +48,7 @@ public class Ordem {
         ordem.produto = produto;
         ordem.marca = marca;
         ordem.modelo = modelo;
-        ordem.caracteristicaProduto = caracteristicaProduto;
+        ordem.defeito = defeito;
         ordem.dataDeAbertura = dataDeAbertura;
         ordem.dataFechamento = dataFechamento;
         return ordem;
@@ -69,7 +69,7 @@ public class Ordem {
             this.modelo = modelo;
         }
         if (caracteristicaProduto != null && !caracteristicaProduto.isBlank()) {
-            this.caracteristicaProduto = caracteristicaProduto;
+            this.defeito = defeito;
         }
     }
 
@@ -107,8 +107,8 @@ public class Ordem {
         return modelo;
     }
 
-    public String getCaracteristicaProduto() {
-        return caracteristicaProduto;
+    public String getDefeito() {
+        return defeito;
     }
 
     public LocalDate getDataDeAbertura() {

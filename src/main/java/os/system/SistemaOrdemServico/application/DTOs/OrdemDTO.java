@@ -13,7 +13,7 @@ public record OrdemDTO(
         String produto,
         String marca,
         String modelo,
-        String caracteristicaProduto,
+        String defeito,
         LocalDate dataDeAbertura,
         LocalDate dataFechamento
 ) {}

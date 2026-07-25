@@ -42,7 +42,7 @@ public class OrdemService {
                 dto.produto(),
                 dto.marca(),
                 dto.modelo(),
-                dto.caracteristicaProduto()
+                dto.defeito()
         );
         Ordem salva = ordemRepository.salvar(ordem);
         return OrdemMapper.paraDTO(salva);
@@ -73,7 +73,7 @@ public class OrdemService {
                 .orElseThrow(() -> new OrdemNaoEncontradaException(id));
 
         ordem.atualizarDados(dto.telefone(), dto.produto(), dto.marca(),
-                dto.modelo(), dto.caracteristicaProduto());
+                dto.modelo(), dto.defeito());
 
         Ordem atualizada = ordemRepository.salvar(ordem);
         return OrdemMapper.paraDTO(atualizada);

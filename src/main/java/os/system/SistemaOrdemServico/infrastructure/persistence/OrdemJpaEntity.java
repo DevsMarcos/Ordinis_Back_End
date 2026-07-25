@@ -39,7 +39,7 @@ public class OrdemJpaEntity {
     private String modelo;
 
     @Column()
-    private String caracteristicaProduto;
+    private String defeito;
 
     @Column()
     private LocalDate dataDeAbertura;
@@ -86,8 +86,8 @@ public class OrdemJpaEntity {
         this.modelo = modelo;
     }
 
-    public void setCaracteristicaProduto(String caracteristicaProduto) {
-        this.caracteristicaProduto = caracteristicaProduto;
+    public void setCaracteristicaProduto(String defeito) {
+        this.defeito = defeito;
     }
 
     public void setDataDeAbertura(LocalDate dataDeAbertura) {
@@ -138,8 +138,8 @@ public class OrdemJpaEntity {
         return modelo;
     }
 
-    public String getCaracteristicaProduto() {
-        return caracteristicaProduto;
+    public String getDefeito() {
+        return defeito;
     }
 
     public LocalDate getDataDeAbertura() {
