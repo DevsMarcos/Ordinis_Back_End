@@ -1,5 +1,4 @@
 name: Deploy
-
 on:
   push:
     branches: [main]
@@ -9,6 +8,24 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: nova_senha
+          MYSQL_DATABASE: ordem_servico
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    env:
+      LANG: en_US.UTF-8
+      LC_ALL: en_US.UTF-8
 
     steps:
       # 1. Baixa o código do repositório para o runner
