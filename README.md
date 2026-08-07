@@ -2,13 +2,12 @@
 
 > Projeto full stack **100% experimental**, criado como laboratório pessoal de aprendizado. Este repositório é a **parte do back-end**: uma API REST em Java + Spring Boot, construída do zero para praticar conceitos de Clean Code, Clean Architecture, boas práticas de desenvolvimento, infraestrutura, CI/CD e deploy em nuvem.
 
-Não é um projeto pensado para produção — é um campo de testes deliberado, onde erros, refatorações e reconstruções fazem parte do processo de aprendizado.
 
 ---
 
 ## 🎯 Objetivo do projeto
 
-Esse back-end nasceu de uma disciplina extensionista da faculdade, envolvendo um projeto real de migração de dados para uma ISP, e evoluiu para um projeto pessoal de estudo. A ideia central é simples: **usar um domínio de negócio pequeno e conhecido (ordens de serviço) para experimentar, errar e aprender conceitos que vão muito além do CRUD básico.**
+Esse back-end nasceu de uma disciplina extensionista da faculdade, envolvendo um projeto real de migração de dados para uma ISP, e evoluiu para um projeto pessoal de estudo. A ideia central é simples: **usar um domínio de negócio pequeno e conhecido (ordens de serviço) para experimentar e aprender conceitos que vão muito além do CRUD básico.**
 
 Principais frentes de aprendizado:
 
