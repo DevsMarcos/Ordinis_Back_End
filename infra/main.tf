@@ -13,6 +13,16 @@ provider "aws" {
   region = var.aws_region
 }
 
+# Busca dinamica da AMI do Ubuntu 22.04 LTS
+data "aws_ami" "ubuntu" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+  owners = ["099720109477"]
+}
+
 resource "aws_security_group" "app_sg" {
   name        = "sistema-ordem-servico-sg"
   description = "Permite HTTP, HTTPS e SSH"
@@ -46,7 +56,7 @@ resource "aws_security_group" "app_sg" {
 }
 
 resource "aws_instance" "app_server" {
-  ami                    = var.ami_id
+  ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.app_sg.id]
 
