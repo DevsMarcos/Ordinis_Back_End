@@ -13,7 +13,7 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: nova_senha
+          MYSQL_ROOT_PASSWORD: test_password_ci
           MYSQL_DATABASE: ordem_servico
         ports:
           - 3306:3306
