@@ -32,7 +32,7 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4
 
-      # 2. Configura o JDK (ajuste a versão conforme seu projeto)
+      # 2. Configura o JDK
       - name: Configurar JDK 21
         uses: actions/setup-java@v4
         with:
@@ -52,7 +52,7 @@ jobs:
       - name: Empacotar aplicação
         run: mvn -B package -DskipTests --file pom.xml
 
-      # 6. Guarda o .jar gerado como artefato do workflow
+      # 6. Guarda o .jar gerado como artefato
       - name: Publicar artefato
         uses: actions/upload-artifact@v4
         with:
