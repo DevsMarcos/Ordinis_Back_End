@@ -13,6 +13,54 @@ provider "aws" {
   region = var.aws_region
 }
 
+# Security Group do Banco de Dados
+resource "aws_security_group" "db_sg" {
+  name        = "sistema-ordem-servico-db-sg"
+  description = "Permite conexao MySQL na porta 3306 vinda do EC2"
+
+  ingress {
+    description     = "MySQL vindo do servidor da aplicacao"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    # Associa diretamente ao SG do seu servidor EC2
+    security_groups = [aws_security_group.app_sg.id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "sistema-ordem-servico-db-sg"
+  }
+}
+
+# Instancia do Banco RDS MySQL
+resource "aws_db_instance" "mysql" {
+  allocated_storage     = 20
+  max_allocated_storage = 20
+  storage_type          = "gp2"
+  engine                = "mysql"
+  engine_version        = "8.0"
+  instance_class        = "db.t3.micro" # Suportado na AWS Free Tier / AWS Labs
+  db_name               = "ordem_servico"
+  username              = "root"
+  password              = var.db_password
+  parameter_group_name  = "default.mysql8.0"
+  vpc_security_group_ids = [aws_security_group.db_sg.id]
+  skip_final_snapshot   = true
+
+  tags = {
+    Name        = "sistema-ordem-servico-mysql"
+    Environment = "dev"
+    ManagedBy   = "terraform"
+  }
+}
+
 # Busca dinamica da AMI do Ubuntu 22.04 LTS
 data "aws_ami" "ubuntu" {
   most_recent = true
