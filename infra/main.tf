@@ -6,11 +6,32 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0"
+    }
   }
 }
 
 provider "aws" {
   region = var.aws_region
+}
+
+# Chave SSH para acesso via GitHub Actions
+resource "tls_private_key" "ssh" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "aws_key_pair" "deploy_key" {
+  key_name   = "sistema-ordem-servico-key"
+  public_key = tls_private_key.ssh.public_key_openssh
+}
+
+resource "local_file" "private_key" {
+  content         = tls_private_key.ssh.private_key_pem
+  filename        = "${path.module}/deploy_key.pem"
+  file_permission = "0600"
 }
 
 # Security Group do Banco de Dados
@@ -41,18 +62,18 @@ resource "aws_security_group" "db_sg" {
 
 # Instancia do Banco RDS MySQL
 resource "aws_db_instance" "mysql" {
-  allocated_storage     = 20
-  max_allocated_storage = 20
-  storage_type          = "gp2"
-  engine                = "mysql"
-  engine_version        = "8.0"
-  instance_class        = "db.t3.micro" # Suportado na AWS Free Tier / AWS Labs
-  db_name               = "ordem_servico"
-  username              = "root"
-  password              = var.db_password
-  parameter_group_name  = "default.mysql8.0"
-  vpc_security_group_ids = [aws_security_group.db_sg.id]
-  skip_final_snapshot   = true
+  allocated_storage      = 20
+  max_allocated_storage   = 20
+  storage_type            = "gp2"
+  engine                  = "mysql"
+  engine_version          = "8.0"
+  instance_class          = "db.t3.micro" # Suportado na AWS Free Tier / AWS Labs
+  db_name                 = "ordem_servico"
+  username                = "root"
+  password                = var.db_password
+  parameter_group_name    = "default.mysql8.0"
+  vpc_security_group_ids  = [aws_security_group.db_sg.id]
+  skip_final_snapshot     = true
 
   tags = {
     Name        = "sistema-ordem-servico-mysql"
@@ -106,6 +127,7 @@ resource "aws_security_group" "app_sg" {
 resource "aws_instance" "app_server" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
+  key_name               = aws_key_pair.deploy_key.key_name
   vpc_security_group_ids = [aws_security_group.app_sg.id]
 
   tags = {
