@@ -8,6 +8,10 @@ target/
 ### TERRAFORM ###
 infra/.terraform/
 infra/.terraform.lock.hcl
+infra/deploy_key.pem
+infra/terraform.tfvars
+infra/terraform.tfstate
+infra/terraform.tfstate.backup
 
 ### STS ###
 .apt_generated
