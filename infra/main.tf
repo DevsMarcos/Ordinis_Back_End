@@ -130,9 +130,22 @@ resource "aws_instance" "app_server" {
   key_name               = aws_key_pair.deploy_key.key_name
   vpc_security_group_ids = [aws_security_group.app_sg.id]
 
+    user_data = <<-EOF
+                #!/bin/bash
+                apt-get update -y
+                apt-get install -y docker.io
+                systemctl enable docker
+                systemctl start docker
+                usermod -aG docker ubuntu
+                EOF
+
   tags = {
     Name        = "sistema-ordem-servico-app-server"
     Environment = "dev"
     ManagedBy   = "terraform"
   }
+}
+
+output "db_endpoint" {
+  value = aws_db_instance.mysql.address
 }
