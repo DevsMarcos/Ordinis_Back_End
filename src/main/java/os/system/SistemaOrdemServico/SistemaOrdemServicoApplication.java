@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SistemaOrdemServicoApplication {
-	//teste de commit
+	//teste de commit e CD
 
 	public static void main(String[] args) {
 		SpringApplication.run(SistemaOrdemServicoApplication.class, args);
