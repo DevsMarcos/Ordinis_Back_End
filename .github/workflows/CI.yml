@@ -82,18 +82,28 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy via SSH
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Copiar script de deploy para a EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "deploy/deploy.sh"
+          target: "/home/ubuntu"
+
+      - name: Executar deploy
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
+          envs: DOCKERHUB_USERNAME,DB_HOST,DB_PASSWORD
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/sistema-ordem-servico:latest
-            docker stop app || true
-            docker rm app || true
-            docker run -d --name app -p 8080:8080 \
-              -e SPRING_DATASOURCE_URL=jdbc:mysql://${{ secrets.DB_HOST }}:3306/ordem_servico \
-              -e SPRING_DATASOURCE_USERNAME=root \
-              -e SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }} \
-              ${{ secrets.DOCKERHUB_USERNAME }}/sistema-ordem-servico:latest
+            export DOCKERHUB_USERNAME="${{ secrets.DOCKERHUB_USERNAME }}"
+            export DB_HOST="${{ secrets.DB_HOST }}"
+            export DB_PASSWORD="${{ secrets.DB_PASSWORD }}"
+            chmod +x /home/ubuntu/deploy.sh
+            /home/ubuntu/deploy.sh
