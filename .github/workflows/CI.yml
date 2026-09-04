@@ -105,5 +105,5 @@ jobs:
             export DOCKERHUB_USERNAME="${{ secrets.DOCKERHUB_USERNAME }}"
             export DB_HOST="${{ secrets.DB_HOST }}"
             export DB_PASSWORD="${{ secrets.DB_PASSWORD }}"
-            chmod +x /home/ubuntu/deploy.sh
-            /home/ubuntu/deploy.sh
+            chmod +x /home/ubuntu/deploy/deploy.sh
+            /home/ubuntu/deploy/deploy.sh
