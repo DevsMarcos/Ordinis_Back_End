@@ -48,6 +48,11 @@ public class OrdemService {
         return OrdemMapper.paraDTO(salva);
     }
 
+    /**A função abaixo é responsável por buscar uma ordem de serviço pelo seu ID, sendo utlizada no Controller.
+     *Se é utilizado o Optional, pois o mesmo é força o tratamento de um possível NULL. Ou seja, ele representa
+     * de forma explícita a possibilida da ausencia de um valor de retorno
+     *
+     * Caso encontrato, convertemos o valor de Domínio para DTO, para que seja possível retornar ao front**/
     public Optional<OrdemDTO> buscarPorId(Long id) {
         return ordemRepository.buscarPorId(id)
                 .map(OrdemMapper::paraDTO);

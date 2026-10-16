@@ -40,6 +40,14 @@ public class OrdemController {
     }
 
     // OrdemController
+
+    /**O endpoint abaixo busca uma ormde de serviço através de seu ID, para isso ela utiliza do metodo
+     * de Buscar por ID, que retorna (ou não caso não encontrar) um DTO da ordem de serviço que estaomos buscando
+     * Caso não encontre, ele retornar notFound
+     *
+     *
+     * A sintaxe: map(ResponseEntity::ok) é a mesma coisa que .map(dto -> ResponseEntity.ok(dto))
+     * **/
     @GetMapping("/buscarPorId/{id}")
     public ResponseEntity<OrdemDTO> buscar(@PathVariable Long id) {
         return ordemService.buscarPorId(id)
